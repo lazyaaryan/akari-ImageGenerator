@@ -1,0 +1,25 @@
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #f0f2f5;
+  color: #1a1a2e;
+  min-height: 100vh;
+}
+
+/* TODO: Header styles */
+/* TODO: Generator section styles */
+/* TODO: Gallery grid styles */
+/* TODO: Card styles */
+/* TODO: Button styles */
+/* TODO: Loading spinner */
+/* TODO: Toast notifications */
+/* TODO: Dark mode styles */
+/* TODO: Responsive breakpoints */
