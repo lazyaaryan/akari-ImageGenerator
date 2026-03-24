@@ -115,17 +115,6 @@ Each image in the gallery is stored as an object:
 
 ---
 
-## 📅 Timeline
-
-| Milestone | Description | Deadline |
-|---|---|---|
-| Milestone 1 | Project setup, README, idea planning | March 23 |
-| Milestone 2 | API integration, display data, responsive design | April 1 |
-| Milestone 3 | Search, filter, sort, dark mode, interactions | April 8 |
-| Milestone 4 | Documentation, cleanup, deployment | April 10 |
-
----
-
 ## 📄 License
 
 This project is for educational purposes.
