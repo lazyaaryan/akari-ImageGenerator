@@ -1,4 +1,4 @@
-var HF_API_TOKEN = 'YOUR_HF_TOKEN_HERE';
+var HF_API_TOKEN = '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';
 var HF_MODEL_URL = 'https://router.huggingface.co/hf-inference/models/stabilityai/stable-diffusion-xl-base-1.0';
 
 var styleMap = {
