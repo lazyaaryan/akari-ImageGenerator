@@ -1,5 +1,15 @@
-// theme.js — Dark / Light mode toggle
-//
-// Planned functions:
-// - initTheme() — load saved theme and wire toggle button
-// - applyTheme(theme) — set data-theme attribute and update icon
+function initTheme() {
+  applyTheme(getSavedTheme());
+
+  document.getElementById('themeToggle').addEventListener('click', function() {
+    var cur = document.documentElement.getAttribute('data-theme');
+    var next = cur === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    saveTheme(next);
+  });
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  document.getElementById('themeIcon').textContent = theme === 'dark' ? 'Light' : 'Dark';
+}

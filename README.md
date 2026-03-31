@@ -20,7 +20,7 @@ This project demonstrates API integration, dynamic DOM manipulation, and the use
 
 ---
 
-## ✨ Planned Features
+## ✨ Features
 
 ### Core Features
 1. **Text-to-Image Generation** — Enter a descriptive text prompt and generate AI art
@@ -35,9 +35,11 @@ This project demonstrates API integration, dynamic DOM manipulation, and the use
 10. **Download** — Download any generated image as a PNG file
 11. **Responsive Design** — Fully responsive across mobile, tablet, and desktop
 
-### Bonus Features (Planned)
-- **Debounced Search** — 300ms debounce on search input
+### Bonus Features
+- **Debounced Search** — 300ms debounce on search input to avoid excessive re-renders
 - **Pagination** — Gallery displays 6 items per page with page navigation
+- **Toast Notifications** — User-friendly feedback messages for all actions
+- **Local Storage** — Gallery images and theme preference persist across sessions
 
 ---
 
@@ -46,18 +48,19 @@ This project demonstrates API integration, dynamic DOM manipulation, and the use
 | Technology | Purpose |
 |---|---|
 | HTML5 | Semantic page structure |
-| CSS3 | Styling, CSS custom properties for theming, responsive grid layout, animations |
+| CSS3 | Styling, dark mode with `[data-theme]` selectors, responsive grid layout |
 | Vanilla JavaScript | Application logic, DOM manipulation, event handling |
 | Fetch API | HTTP requests to Hugging Face Inference API |
 | localStorage | Persistent storage for gallery images and theme preference |
+| Google Fonts (Inter) | Typography |
 
 ---
 
-## 📁 Project Structure (Planned)
+## 📁 Project Structure
 
 ```
-├── index.html          # Main HTML page
-├── style.css           # Styles with CSS variables for light/dark theming
+├── index.html          # Main HTML page with all sections
+├── style.css           # Styles with light/dark theming, responsive breakpoints
 ├── js/
 │   ├── api.js          # API integration (fetch calls to Hugging Face)
 │   ├── storage.js      # localStorage helpers for gallery and preferences
@@ -78,10 +81,10 @@ This project demonstrates API integration, dynamic DOM manipulation, and the use
 ### Steps
 1. Clone the repository:
    ```bash
-   git clone https://github.com/lazyaaryan/skills-copilot-codespaces-vscode.git
-   cd skills-copilot-codespaces-vscode
+   git clone https://github.com/lazyaaryan/akari-ImageGenerator.git
+   cd akari-ImageGenerator
    ```
-2. Open `js/api.js` and add your Hugging Face API token
+2. Open `js/api.js` and replace the API token with your own Hugging Face token
 3. Open `index.html` in a browser, or start a local server:
    ```bash
    python3 -m http.server 8080
@@ -108,10 +111,26 @@ Each image in the gallery is stored as an object:
 
 ## 📝 Key Implementation Notes
 
-- All search, filter, and sort operations will use **Array Higher-Order Functions** (`map`, `filter`, `sort`, `slice`, `reduce`) — no `for` or `while` loops
-- Code will be organized into **separate modules** by concern (API, storage, theme, filters, UI)
-- CSS will use **CSS custom properties (variables)** for seamless light/dark theming
-- The app will handle **API errors gracefully** with user-friendly toast messages
+### Array Higher-Order Functions Used
+- **`Array.filter()`** — Used for search (by prompt text), filtering by style, and filtering favorites
+- **`Array.sort()`** — Used for sorting by date (newest/oldest) and alphabetically (A-Z, Z-A)
+- **`Array.map()`** — Used for rendering gallery cards and toggling liked status
+- **`Array.slice()`** — Used for pagination (selecting items for current page)
+- **`Array.from()`** — Used for generating page number buttons
+
+### Code Organization
+- Code is organized into **separate modules** by concern (API, storage, theme, filters, UI)
+- No `for` or `while` loops used — all data operations use Array HOFs
+- The app handles **API errors gracefully** with user-friendly toast messages
+- **Event delegation** used for gallery card interactions (like, download, delete)
+- **Debounce** implemented for search input to optimize performance
+
+---
+
+## 🚀 Deployment
+
+The project is deployed using GitHub Pages:
+- **Live URL**: [https://lazyaaryan.github.io/akari-ImageGenerator/](https://lazyaaryan.github.io/akari-ImageGenerator/)
 
 ---
 

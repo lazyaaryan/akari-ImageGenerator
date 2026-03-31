@@ -4,27 +4,159 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Akari - Image Generator</title>
-  <meta name="description" content="Akari - Generate stunning AI images from text prompts using Stable Diffusion. Browse, search, filter, and organize your AI art gallery." />
+  <meta name="description" content="Akari - Generate stunning AI images from text prompts using Stable Diffusion." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@800;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="assets/logo.png" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <header>
-    <h1>🎨 Akari - Image Generator</h1>
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <div class="header__brand">
+        <img src="assets/logo.png" alt="Akari Logo" class="header__logo-img" />
+        <h1 class="header__title">AKARI</h1>
+      </div>
+      <nav class="header__nav">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <span id="themeIcon">Moon</span>
+        </button>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <!--image generator -->
-    <section id="generator">
-      <h2>Create AI Art from Text</h2>
+    <!-- HERO / GENERATOR -->
+    <section class="generator" id="generator">
+      <div class="generator__container">
+        <div class="generator__hero">
+          <h2 class="generator__heading">CREATE<br/>YOUR ART</h2>
+          <p class="generator__sub">Describe your vision. Let AI bring it to life.</p>
+        </div>
+
+        <div class="generator__form">
+          <div class="generator__input-group">
+            <textarea
+              id="promptInput"
+              class="generator__textarea"
+              placeholder="A warrior standing on a mountain peak at dawn..."
+              rows="3"
+              maxlength="500"
+            ></textarea>
+            <span class="generator__char-count"><span id="charCount">0</span>/500</span>
+          </div>
+
+          <div class="generator__controls">
+            <div class="generator__style-picker">
+              <label for="styleSelect" class="generator__label">ART STYLE</label>
+              <select id="styleSelect" class="generator__select">
+                <option value="Realistic">Realistic</option>
+                <option value="Anime">Anime</option>
+                <option value="Cartoon">Cartoon</option>
+                <option value="Oil Painting">Oil Painting</option>
+                <option value="Cyberpunk">Cyberpunk</option>
+                <option value="Watercolor">Watercolor</option>
+              </select>
+            </div>
+            <button class="btn btn--primary" id="generateBtn">
+              GENERATE
+            </button>
+          </div>
+        </div>
+
+        <!-- Preview -->
+        <div class="generator__preview" id="previewArea" style="display:none;">
+          <div class="preview-card">
+            <img id="previewImage" class="preview-card__img" src="" alt="Generated AI image" />
+            <div class="preview-card__actions">
+              <button class="btn btn--primary" id="downloadBtn">DOWNLOAD</button>
+              <button class="btn btn--outline" id="saveToGalleryBtn">SAVE TO GALLERY</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- gallery -->
-    <section id="gallery">
-      <h2>Your Gallery</h2>
+    <!-- GALLERY -->
+    <section class="gallery" id="gallery">
+      <div class="gallery__container">
+        <h2 class="gallery__heading">YOUR GALLERY</h2>
+        <div class="gallery__divider"></div>
+
+        <!-- Controls -->
+        <div class="gallery__controls">
+          <div class="gallery__search-wrap">
+            <input
+              type="text"
+              id="searchInput"
+              class="gallery__search"
+              placeholder="Search prompts..."
+            />
+          </div>
+
+          <div class="gallery__filters">
+            <select id="filterStyle" class="gallery__select">
+              <option value="All">All Styles</option>
+              <option value="Realistic">Realistic</option>
+              <option value="Anime">Anime</option>
+              <option value="Cartoon">Cartoon</option>
+              <option value="Oil Painting">Oil Painting</option>
+              <option value="Cyberpunk">Cyberpunk</option>
+              <option value="Watercolor">Watercolor</option>
+            </select>
+
+            <select id="sortSelect" class="gallery__select">
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+              <option value="az">A - Z</option>
+              <option value="za">Z - A</option>
+            </select>
+
+            <button class="btn btn--tag" id="favoritesBtn">Favorites</button>
+          </div>
+        </div>
+
+        <!-- Grid -->
+        <div class="gallery__grid" id="galleryGrid"></div>
+
+        <!-- Empty state -->
+        <div class="gallery__empty" id="galleryEmpty">
+          <p>No images yet. Create your first masterpiece above.</p>
+        </div>
+
+        <!-- Pagination -->
+        <div class="gallery__pagination" id="pagination"></div>
+      </div>
     </section>
   </main>
 
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__text">AKARI IMAGE GENERATOR</p>
+      <p class="footer__sub">Powered by Hugging Face & Stable Diffusion</p>
+    </div>
+  </footer>
 
+  <!-- Loading overlay -->
+  <div class="loader-overlay" id="loaderOverlay">
+    <div class="loader">
+      <div class="loader__spinner"></div>
+      <p class="loader__text">Generating your masterpiece...</p>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
