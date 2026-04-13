@@ -10,13 +10,12 @@ This project demonstrates API integration, dynamic DOM manipulation, and the use
 
 ## 🌐 API Used
 
-**Hugging Face Inference API**
-- **Model**: `stabilityai/stable-diffusion-xl-base-1.0` (Stable Diffusion XL)
-- **Endpoint**: `https://router.huggingface.co/hf-inference/models/stabilityai/stable-diffusion-xl-base-1.0`
-- **Method**: `POST` request with JSON body containing the text prompt
-- **Response**: Returns image data as a binary blob (PNG)
-- **Authentication**: Requires a free API token (Bearer token in Authorization header)
-- **Documentation**: [Hugging Face Inference API Docs](https://huggingface.co/docs/api-inference)
+**Pollinations.ai**
+- **Endpoint**: `https://image.pollinations.ai/prompt/{prompt}`
+- **Method**: `GET` request with the text prompt encoded in the URL
+- **Response**: Returns image data as JPEG
+- **Authentication**: None required (free and open)
+- **Documentation**: [Pollinations.ai](https://pollinations.ai)
 
 ---
 
@@ -50,7 +49,8 @@ This project demonstrates API integration, dynamic DOM manipulation, and the use
 | HTML5 | Semantic page structure |
 | CSS3 | Styling, dark mode with `[data-theme]` selectors, responsive grid layout |
 | Vanilla JavaScript | Application logic, DOM manipulation, event handling |
-| Fetch API | HTTP requests to Hugging Face Inference API |
+| Fetch API | HTTP requests to Pollinations.ai for image generation |
+| Vercel Serverless Functions | API proxy route (`/api/generate`) |
 | localStorage | Persistent storage for gallery images and theme preference |
 | Google Fonts (Inter) | Typography |
 
@@ -61,8 +61,10 @@ This project demonstrates API integration, dynamic DOM manipulation, and the use
 ```
 ├── index.html          # Main HTML page with all sections
 ├── style.css           # Styles with light/dark theming, responsive breakpoints
+├── api/
+│   └── generate.js     # Vercel serverless function (proxies to Pollinations.ai)
 ├── js/
-│   ├── api.js          # API integration (fetch calls to Hugging Face)
+│   ├── api.js          # Client-side API calls to /api/generate
 │   ├── storage.js      # localStorage helpers for gallery and preferences
 │   ├── theme.js        # Dark/Light mode toggle logic
 │   ├── filters.js      # Search, filter, sort, pagination using Array HOFs
@@ -76,7 +78,7 @@ This project demonstrates API integration, dynamic DOM manipulation, and the use
 
 ### Prerequisites
 - A modern web browser (Chrome, Firefox, Edge, Safari)
-- A free Hugging Face account and API token ([Get one here](https://huggingface.co/settings/tokens))
+- Node.js installed
 
 ### Steps
 1. Clone the repository:
@@ -84,12 +86,11 @@ This project demonstrates API integration, dynamic DOM manipulation, and the use
    git clone https://github.com/lazyaaryan/akari-ImageGenerator.git
    cd akari-ImageGenerator
    ```
-2. Open `js/api.js` and replace the API token with your own Hugging Face token
-3. Open `index.html` in a browser, or start a local server:
+2. Install and run with Vercel CLI:
    ```bash
-   python3 -m http.server 8080
+   npx vercel dev
    ```
-4. Visit `http://localhost:8080` in your browser
+3. Visit `http://localhost:3000` in your browser
 
 ---
 
@@ -98,12 +99,12 @@ This project demonstrates API integration, dynamic DOM manipulation, and the use
 Each image in the gallery is stored as an object:
 ```js
 {
-  id: "unique-id",        // Unique identifier
-  prompt: "user prompt",  // The text prompt used to generate the image
-  style: "Anime",         // The selected art style
-  imageUrl: "data:...",   // Base64 image data
-  date: "2026-03-24...",  // ISO date string
-  liked: false            // Whether the user has liked/favorited this image
+  id: "unique-id",
+  prompt: "user prompt",
+  style: "Anime",
+  imageUrl: "data:...",
+  date: "2026-03-24...",
+  liked: false
 }
 ```
 
@@ -129,11 +130,12 @@ Each image in the gallery is stored as an object:
 
 ## 🚀 Deployment
 
-The project is deployed using GitHub Pages:
-- **Live URL**: [https://lazyaaryan.github.io/akari-ImageGenerator/](https://lazyaaryan.github.io/akari-ImageGenerator/)
+Deployed on Vercel:
+- **Live URL**: [https://akari-image-generator.vercel.app](https://akari-image-generator.vercel.app)
 
 ---
 
 ## 📄 License
 
 This project is for educational purposes.
+
