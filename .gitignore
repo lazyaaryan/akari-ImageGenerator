@@ -1,2 +1,3 @@
-# API keys
-js/api.js
+.env.local
+.vercel
+node_modules
